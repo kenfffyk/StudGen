@@ -1,16 +1,10 @@
-# Импортируем функцию load_and_prepare_data из файла parse.py
-from parse import load_and_prepare_data
-
-# Создаем функцию с параметром filename
-# Теперь функция принимает имя файла как аргумент
-def calculate_top20_averages(filename="student_success_factors.csv"):
-    # Загружаем данные из указанного файла
-    df = load_and_prepare_data(filename)
+#вызываем функцию 
+def calculate_top20_averages(df):
 
     # Проверяем, удалось ли загрузить данные
     if df is None or df.empty:
-        print(f"Ошибка: не удалось загрузить данные из '{filename}'.")
-        return  # Завершаем работу функции
+        print("Ошибка: передан пустой DataFrame")
+        return 
 
     # Сортируем таблицу студентов по столбцу "exam_score" 
     sorted_df = df.sort_values(by="exam_score", ascending=False)
@@ -63,6 +57,3 @@ def calculate_top20_averages(filename="student_success_factors.csv"):
     # Выводим средний доход семьи
     print(f"Средний доход семьи: {avg_income:.2f}")
 
-if __name__ == "__main__":
-    # Вызываем нашу основную функцию
-    calculate_top20_averages()
